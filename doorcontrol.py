@@ -128,13 +128,3 @@ for time in lockTimes:
     command = "echo '/home/pi/scripts/relayon.sh' | at " + str(time)
     subprocess.run(command, shell=True, check=True)
 '''
-
-print(doy)
-        
-
-
-
-
-
-
-
