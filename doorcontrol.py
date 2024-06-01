@@ -2,6 +2,38 @@ from datetime import datetime, timedelta
 import json
 import subprocess
 
+props = []
+with open('props.json') as f:
+    props = json.load(f)
+
+def logger(s):
+    if props['logtofile']:
+        with open(props['logfile'], 'a') as f:
+            t = datetime.now().strftime('%b %d %Y, %I:%M:%S%p')
+            f.write("{ts} | {s}\n".format(ts = t, s = s))  
+    if props['logtostdout']:
+        t = datetime.now().strftime('%b %d %Y, %I:%M:%S%p')
+        print("{ts} | {s}".format(ts = t, s = s))
+
+#returns true if today falls within the month parameter range
+def is_in_month(fmt, mon, values):
+
+    return False
+
+#returns true if today falls within the date parameter range
+def is_in_date(fmt, date, values):
+
+    return False
+
+#returns true if today falls within the day parameter range
+def is_in_day(fmt, day, values):
+    if day == '*':
+        return True
+    
+    
+
+    return False
+
 def adjust_time(prayer_time_str, offset_str):
     prayer_time = datetime.strptime(values[prayer_time_str], "%I:%M %p")
     if offset_str[0] == '+':
@@ -38,23 +70,33 @@ reference_date = datetime(2020, 12, 31)
 difference = now - reference_date
 doy = difference.days
 
-jsonPath = "static.json"
+jsonPath = props["salattimefile"]
 with open(jsonPath, "r") as times:
     data = json.load(times)
 
 if str(doy) in data:
     values = data[str(doy)]
 else:
-    print("data not available")
+    logger("data not available")
     exit()
 
 todaysExceptions = []
-with open("exceptions.txt", "r") as exceptions:
+with open(props["exceptionfile"], "r") as exceptions:
     for line in exceptions:
+        if line[0] == '#' or len(line.strip()) == 0:
+            continue
+
         line = line.strip()
         lineValues = line.split()
-        month = lineValues[0]
-        day = lineValues[1]
+        fmt = lineValues[0].strip()
+        month = lineValues[1].strip()
+        date = lineValues[2].strip()
+        day = lineValues[3].strip()
+        start = lineValues[4].strip()
+        end = lineValues[5].strip()
+
+        if is_in_month(fmt, month, values) and is_in_date(fmt, date, values) and is_in_day(fmt, day, values):
+            todaysExceptions.append([lineValues[2], lineValues[3]])
         
         if (values['gmonth'].lower() == month.lower() or values['imonth'].lower() == month.lower()) and values['day'] == day:
             todaysExceptions.append([lineValues[2], lineValues[3]])

@@ -1,3 +1,16 @@
+#[calendar (g/i)] [Month] [day of month] [day of week] [door open time] [door close time]
+
+#legend:
+#months: 1- muharram, january
+#day of week: 0-sunday, 6-saturday
+
+#examples:
+#g 3 * * 1300 1500
+#^^open 1pm-3pm every day in march
+
+#i 9 * 5 1800 2330
+#open 6pm to 11:30pm every friday in ramadan
+
 0 Friday dhuhriq-30 dhuhriq+88
 Ramadan 0 maghrebiq-20 ishaiq+110
 0 Saturday 8:30AM 2:00PM
