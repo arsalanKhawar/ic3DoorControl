@@ -1,0 +1,23 @@
+{
+    "logfile":"/home/pi/scripts/doorunlock/run.log",
+    "logtofile": false,
+    "logtostdout": true,
+    "salattimefile": "static.json",
+    "exceptionfile": "exceptions.txt",
+
+    "daytable":
+        {
+            "Sunday": 0,
+            "Monday": 1,
+            "Tuesday": 2,
+            "Wednesday": 3,
+            "Thursday": 4,
+            "Friday": 5,
+            "Saturday": 6
+        },
+    "imonthtable":
+        {
+            "Muharram": 1
+        }
+
+}
