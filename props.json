@@ -17,7 +17,19 @@
         },
     "imonthtable":
         {
-            "Muharram": 1
+            "Muharram": 1,
+            "Safar" : 2,
+            "Rabi ul Awal" : 3,
+            "Rabi Al-Akhar" : 4,
+            "Jumada Al-Awwal" : 5,
+            "Jumada Al-Akhirah" : 6,
+            "Rajab" : 7,
+            "Shaban" : 8,
+            "Ramadan": 9,
+            "Shawwal": 10,
+            "Dhul Qadah" : 11,
+            "Dhul Hijjah": 12
+
         }
 
 }

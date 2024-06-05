@@ -1,5 +1,6 @@
-import json
 from datetime import datetime, timedelta
+import json
+import subprocess
 
 # Load properties
 with open('props.json') as f:
@@ -9,20 +10,23 @@ def logger(s):
     if props['logtofile']:
         with open(props['logfile'], 'a') as f:
             t = datetime.now().strftime('%b %d %Y, %I:%M:%S%p')
-            f.write("{ts} | {s}\n".format(ts=t, s=s))
+            f.write("{ts} | {s}\n".format(ts = t, s = s))
     if props['logtostdout']:
         t = datetime.now().strftime('%b %d %Y, %I:%M:%S%p')
-        print("{ts} | {s}".format(ts=t, s=s))
+        print("{ts} | {s}".format(ts = t, s = s))
 
+# Returns true if today falls within the month parameter range
 def is_in_month(fmt, mon, values):
     if mon == '*':
         return True  # Matches any month
+
     if fmt == 'g':
         current_month = values['gmonth']
     else:
         current_month = values['imonth']
     
     try:
+        # Check if mon is a string name and convert it to an integer
         if not mon.isdigit():
             if fmt == 'g':
                 mon = datetime.strptime(mon, '%B').month
@@ -30,28 +34,29 @@ def is_in_month(fmt, mon, values):
                 mon = props['imonthtable'][mon]
         mon = int(mon)
 
+        # Convert current_month to an integer if it is a name
         if not current_month.isdigit():
             if fmt == 'g':
                 current_month = datetime.strptime(current_month, '%B').month
             else:
                 current_month = props['imonthtable'][current_month]
         current_month = int(current_month)
-        return current_month == mon
+        return current_month == int(mon)
     except KeyError:
         return False
 
+# Returns true if today falls within the date parameter range
 def is_in_date(fmt, date, values):
     if date == '*':
         return True  # Matches any date
-    if fmt == 'g':
-        return int(values['gdate']) == int(date)
-    else:
-        return int(values['idate']) == int(date)
+    return int(values['day']) == int(date)
 
+# Returns true if today falls within the day parameter range
 def is_in_day(fmt, day, values):
     if day == '*':
         return True  # Matches any day of the week
     current_day = datetime.now().weekday()
+    # Adjust the current_day to match the day table in props
     current_day = (current_day + 1) % 7  # Adjust to match Sunday=0, Monday=1, etc.
     return current_day == int(day)
 
@@ -80,6 +85,7 @@ def process_exception_time(exception_time):
         return datetime.strptime(exception_time, "%H%M").strftime("%H%M")
 
 def is_within_any_range(time_to_check, ranges):
+    # First convert the check time to 24-hour format
     time_to_check = datetime.strptime(time_to_check, "%I:%M %p").strftime("%H%M")
     time_to_check = datetime.strptime(time_to_check, "%H%M")
     
@@ -152,6 +158,7 @@ calculate_prayer_times('asriq', 15, 29)
 calculate_prayer_times('maghrebiq', 20, 0)
 calculate_prayer_times('ishaiq', 0, 30)
 
+# Add exceptions directly to the unlock and lock times to ensure they cover the entire period
 for time_range in todaysExceptions:
     unlockTimes.append(time_range[0])
     lockTimes.append(time_range[1])
