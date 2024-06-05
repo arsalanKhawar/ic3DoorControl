@@ -1,0 +1,35 @@
+{
+    "logfile":"/home/pi/scripts/doorunlock/run.log",
+    "logtofile": false,
+    "logtostdout": true,
+    "salattimefile": "static.json",
+    "exceptionfile": "exceptions.txt",
+
+    "daytable":
+        {
+            "Sunday": 0,
+            "Monday": 1,
+            "Tuesday": 2,
+            "Wednesday": 3,
+            "Thursday": 4,
+            "Friday": 5,
+            "Saturday": 6
+        },
+    "imonthtable":
+        {
+            "Muharram": 1,
+            "Safar" : 2,
+            "Rabi ul Awal" : 3,
+            "Rabi Al-Akhar" : 4,
+            "Jumada Al-Awwal" : 5,
+            "Jumada Al-Akhirah" : 6,
+            "Rajab" : 7,
+            "Shaban" : 8,
+            "Ramadan": 9,
+            "Shawwal": 10,
+            "Dhul Qadah" : 11,
+            "Dhul Hijjah": 12
+
+        }
+
+}
