@@ -182,23 +182,6 @@ with open(props["exceptionfile"], "r") as exceptions:
         if is_in_month(fmt, month, values) and is_in_date(fmt, date, values) and is_in_day(fmt, day, values):
             applyentry(start, end)            
 
-
-
-
-#apply today's iqamah timings
-applyentry('fajriq-15', 'fajriq+30')
-applyentry('dhuhriq-15', 'dhuhriq+30')
-applyentry('asriq-15', 'asriq+30')
-applyentry('maghrebiq-15', 'ishaiq+30')
-
-'''
-calculate_prayer_times('fajriq', 15, 30)
-calculate_prayer_times('dhuhriq', 15, 45)
-calculate_prayer_times('asriq', 15, 29)
-calculate_prayer_times('maghrebiq', 20, 0)
-calculate_prayer_times('ishaiq', 0, 30)
-'''
-
 #master data array fully populated at this point
 dooropen = minutes[0]
 
