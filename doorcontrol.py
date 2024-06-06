@@ -137,7 +137,9 @@ def generateat(doorstate, minute):
         command = "echo '/home/pi/scripts/relayoff.sh' | at {time}".format(time=t.strftime("%I:%M %p"))
 
     logger(command)
-    #subprocess.run(command, shell=True, check=True)
+
+    if props["production"]:
+        subprocess.run(command, shell=True, check=True)
 
 ##################################################################################################
 
