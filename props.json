@@ -1,4 +1,5 @@
 {
+    "production": false,
     "logfile":"/home/pi/scripts/doorunlock/run.log",
     "logtofile": false,
     "logtostdout": true,
