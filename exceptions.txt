@@ -10,13 +10,34 @@
 
 
 
-#Real exceptions:
 
-g * * 5 dhuhriq-30 dhuhriq+88
-#jummah timings
+#Exceptions:
 
-g * * 6 0830 1400
-#saturday school timings.
+#jummah timings, fridays
+g * * 5 dhuhriq-60 dhuhriq+120
 
-#i 9 * 3 1800 2330
+#saturday school timings, Sat 8:30am to 2pm
+g 1,2,3,4,5,6,9,10,11,12 * 6 0830 1400
+
+#quran school timings, T,W,Th 4:55pm to 7:45pm
+g * * 2,3,4 1655 1945
+
+#taraweeh timings, Ramadan, until 11pm
+i 9 * * ishaiq 2300
+
+#taraweeh timings, first night of Ramadan, until 11pm
+i 8 29,30 * ishaiq 2300
+
 #open 6pm to 11:30pm every friday in ramadan
+i 9 * 3 maghrebiq-75 ishaiq
+
+#summer 2024
+g 5,6,7,8,9 * * dhuhriq ishaiq
+
+
+
+#daily salat
+g * * * fajriq-15 fajriq+30
+g * * * dhuhriq-15 dhuhriq+30
+g * * * asriq-15 asriq+30
+g * * * maghrebiq-15 ishaiq+30

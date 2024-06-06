@@ -4,7 +4,20 @@
     "logtostdout": true,
     "salattimefile": "static.json",
     "exceptionfile": "exceptions.txt",
-
+    "salatkeys":
+        [
+            "fajr",
+            "fajriq",
+            "sunrise",
+            "dhuhr",
+            "dhuhriq",
+            "asr",
+            "asriq",
+            "maghreb",
+            "maghrebiq",
+            "isha",
+            "ishaiq"
+        ],
     "daytable":
         {
             "Sunday": 0,
@@ -29,7 +42,21 @@
             "Shawwal": 10,
             "Dhul Qadah" : 11,
             "Dhul Hijjah": 12
-
+        },
+    "gmonthtable":
+        {
+            "January": 1,
+            "February" : 2,
+            "March" : 3,
+            "April" : 4,
+            "May" : 5,
+            "June" : 6,
+            "July" : 7,
+            "August" : 8,
+            "September": 9,
+            "October": 10,
+            "November" : 11,
+            "December": 12
         }
 
 }
