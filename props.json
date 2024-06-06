@@ -4,6 +4,20 @@
     "logtostdout": true,
     "salattimefile": "static.json",
     "exceptionfile": "exceptions.txt",
+    "salatkeys":
+        [
+            "fajr",
+            "fajriq",
+            "sunrise",
+            "dhuhr",
+            "dhuhriq",
+            "asr",
+            "asriq",
+            "maghreb",
+            "maghrebiq",
+            "isha",
+            "ishaiq"
+        ],
     "daytable":
         {
             "Sunday": 0,

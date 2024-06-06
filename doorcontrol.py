@@ -49,7 +49,7 @@ def is_in_date(fmt, date, values):
             logger("Bad value received for date: [{d}], expected number".format(d=d))
             return False
     
-        if curdate == d:
+        if curdate == int(d):
             return True
         
     return False
@@ -67,8 +67,8 @@ def is_in_day(fmt, day, values):
         if not d.isdigit():
             logger("Bad value received for day: [{d}], expected number".format(d=d))
             return False
-    
-        if current_num_day == d:
+            
+        if current_num_day == int(d):
             return True
         
     return False
@@ -96,6 +96,8 @@ def process_exception_time(exception_time):
             offset_str = '+' + parts[1]
         return adjust_time(prayer_time_str, offset_str)
     else:
+        if exception_time in props['salatkeys']:
+            return datetime.strptime(values[exception_time], "%I:%M %p").strftime("%H:%M")
         return datetime.strptime(exception_time, "%H%M").strftime("%H:%M")
 
 def timetominutes(t):
@@ -116,7 +118,7 @@ def applyentry(start, end):
         return
 
     #update master array
-    minutes[start:end] = [True] * (end - start)
+    minutes[startmin:endmin] = [True] * (endmin - startmin)
 
 def calculate_prayer_times(prayer_name, unlock_offset, lock_offset):
     prayer_time = values[prayer_name]
@@ -135,7 +137,7 @@ def generateat(doorstate, minute):
         command = "echo '/home/pi/scripts/relayoff.sh' | at {time}".format(time=t.strftime("%I:%M %p"))
 
     logger(command)
-    subprocess.run(command, shell=True, check=True)
+    #subprocess.run(command, shell=True, check=True)
 
 ##################################################################################################
 
